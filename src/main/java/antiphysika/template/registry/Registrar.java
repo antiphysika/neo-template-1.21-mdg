@@ -36,7 +36,7 @@ public class Registrar
 
   public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TEMPLATE_TAB =
     CREATIVE_MODE_TABS.register("template_tab", () -> CreativeModeTab.builder()
-      .title(Component.translatable("itemGroup.template"))
+      .title("Template Mod")
       .withTabsBefore(CreativeModeTabs.COMBAT)
       .icon(() -> EXAMPLE_BLOCK_ITEM.get().getDefaultInstance())
       .displayItems((parameters, output) -> {
