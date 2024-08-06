@@ -1,18 +1,24 @@
+/*
+ * SPDX-License-Identifier: LGPL-2.1
+ */
+
 package antiphysika.template.datagen;
 
-import antiphysika.template.registry.Registrar;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
+
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
 import org.jetbrains.annotations.NotNull;
 
+import antiphysika.template.registry.Registrar;
 import static antiphysika.template.TemplateMod.MOD_ID;
 
-public class ModBlockstateProvider extends BlockStateProvider
+public class ModBlockModels extends BlockStateProvider
 {
-  public ModBlockstateProvider (PackOutput output, ExistingFileHelper exFileHelper)
+  public ModBlockModels(PackOutput output, ExistingFileHelper exFileHelper)
   {
     super(output, MOD_ID, exFileHelper);
   }

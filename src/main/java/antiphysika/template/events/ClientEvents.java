@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: LGPL-2.1
+ */
+
 package antiphysika.template.events;
 
 import net.neoforged.api.distmarker.Dist;

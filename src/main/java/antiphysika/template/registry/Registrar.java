@@ -1,8 +1,11 @@
+/*
+ * SPDX-License-Identifier: LGPL-2.1
+ */
+
 package antiphysika.template.registry;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -26,7 +29,10 @@ public class Registrar
 
   public static final DeferredBlock<Block> EXAMPLE_BLOCK =
     BLOCKS.registerSimpleBlock("example_block",
-      BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
+      BlockBehaviour.Properties.of()
+        .strength(0.8f)
+        .requiresCorrectToolForDrops()
+        .mapColor(MapColor.STONE));
 
   public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM =
     ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
@@ -36,7 +42,7 @@ public class Registrar
 
   public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TEMPLATE_TAB =
     CREATIVE_MODE_TABS.register("template_tab", () -> CreativeModeTab.builder()
-      .title("Template Mod")
+      .title(Component.literal("Template Mod"))
       .withTabsBefore(CreativeModeTabs.COMBAT)
       .icon(() -> EXAMPLE_BLOCK_ITEM.get().getDefaultInstance())
       .displayItems((parameters, output) ->
