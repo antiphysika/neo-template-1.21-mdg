@@ -39,12 +39,15 @@ public class Registrar
       .title("Template Mod")
       .withTabsBefore(CreativeModeTabs.COMBAT)
       .icon(() -> EXAMPLE_BLOCK_ITEM.get().getDefaultInstance())
-      .displayItems((parameters, output) -> {
-        BLOCKS.getEntries().forEach(e -> {
+      .displayItems((parameters, output) ->
+      {
+        BLOCKS.getEntries().forEach(e ->
+        {
           Item item = e.get().asItem();
           output.accept(item);
         });
-        ITEMS.getEntries().forEach(e -> {
+        ITEMS.getEntries().forEach(e ->
+        {
           Item item = e.get();
           output.accept(item);
         });
