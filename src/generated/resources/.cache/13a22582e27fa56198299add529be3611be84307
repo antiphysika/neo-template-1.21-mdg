@@ -1,0 +1,4 @@
+// 1.21	2024-08-06T02:53:52.035983522	Block States: template
+52f8bd0238ca4d73aa1cf5496ea79d21b34c3e75 assets/template/blockstates/example_block.json
+eca79257b4b27d2a623b8c8c05c731edbc9dd3e9 assets/template/models/block/example_block.json
+66eafef306cdd460eabff7e38a772b881ee9a501 assets/template/models/item/example_block.json
