@@ -56,11 +56,11 @@ public class Registrar
 
   public static void register (IEventBus bus)
   {
-    // Deferred reg: blocks/items
+    // Register blocks and items
     BLOCKS.register(bus);
     ITEMS.register(bus);
 
-    // Deferred reg: creative mode tab
+    // Register creative mode tab
     CREATIVE_MODE_TABS.register(bus);
   }
 }
