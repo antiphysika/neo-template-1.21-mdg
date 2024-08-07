@@ -107,6 +107,7 @@ dependencies {
   System.out.println(String.format("jei_enabled == %s", jei_enabled));
   System.out.println(String.format("jade_enabled == %s", jade_enabled));
   System.out.println(String.format("dag_enabled == %s", dag_enabled));
+  System.out.println(String.format("xaeros_minimap_enabled == %s", xaeros_minimap_enabled));
 
   // JEI
   if (jei_enabled == "true") {
@@ -127,6 +128,11 @@ dependencies {
         requireCapability('dev.lukebemish:dynamicassetgenerator-neoforge')
       }
     }
+  }
+
+  // Xaero's Minimap
+  if (xaeros_minimap_enabled == "true") {
+    implementation "curse.maven:xaeros-minimap-263420:${xaeros_minimap_file_id}"
   }
 }
 
