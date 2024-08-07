@@ -13,6 +13,28 @@ group = mod_group_id
 
 repositories {
   mavenLocal()
+  mavenCentral()
+
+  // JEI
+  maven {
+    name 'JEI Maven'
+    url 'https://maven.blamejared.com'
+  }
+
+  // JEI (fallback)
+  maven {
+    name 'ModMaven'
+    url 'https://modmaven.dev'
+  }
+
+  // CF Maven
+  maven {
+    name 'Curse Maven'
+    url 'https://www.cursemaven.com'
+    content {
+      includeGroup 'curse.maven'
+    }
+  }
 }
 
 base {
@@ -82,6 +104,30 @@ configurations {
 }
 
 dependencies {
+  System.out.println(String.format("jei_enabled == %s", jei_enabled));
+  System.out.println(String.format("jade_enabled == %s", jade_enabled));
+  System.out.println(String.format("dag_enabled == %s", dag_enabled));
+
+  // JEI
+  if (jei_enabled == "true") {
+    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+  }
+
+  // Jade
+  if (jade_enabled == "true") {
+    implementation "curse.maven:jade-324717:${jade_file_id}"
+  }
+
+  // Dynamic Asset Generator
+  if (dag_enabled == "true") {
+    implementation("dev.lukebemish:dynamicassetgenerator:${dag_version}") {
+      capabilities {
+        requireCapability('dev.lukebemish:dynamicassetgenerator-neoforge')
+      }
+    }
+  }
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
