@@ -65,21 +65,14 @@ public class DataGenerators
     PackOutput output = generator.getPackOutput();
     ExistingFileHelper exFileHelper = event.getExistingFileHelper();
 
-    try
-    {
-      // Block/item models
-      generateBlockStateData(event, output, exFileHelper);
+    // Block/item models
+    generateBlockStateData(event, output, exFileHelper);
 
-      // Block loot tables
-      generateBlockLootTables(event, output, exFileHelper);
+    // Block loot tables
+    generateBlockLootTables(event, output, exFileHelper);
 
-      // Block tags
-      generateBlockTags(event, output, exFileHelper);
-    }
-    catch (Exception ex)
-    {
-      throw new RuntimeException("Unhandled {0}".formatted(ex.getClass().getCanonicalName()));
-    }
+    // Block tags
+    generateBlockTags(event, output, exFileHelper);
   }
 }
 
