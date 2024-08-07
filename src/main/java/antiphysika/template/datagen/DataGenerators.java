@@ -58,6 +58,15 @@ public class DataGenerators
     );
   }
 
+  public static void generateTranslations (GatherDataEvent event, PackOutput output,
+                                        ExistingFileHelper exFileHelper)
+  {
+    event.getGenerator().addProvider(
+      true,
+      new ModTranslations(output, "en_us")
+    );
+  }
+
   @SubscribeEvent
   public static void gatherData (GatherDataEvent event)
   {
@@ -73,6 +82,9 @@ public class DataGenerators
 
     // Block tags
     generateBlockTags(event, output, exFileHelper);
+
+    // Default en_us translations
+    generateTranslations(event, output, exFileHelper);
   }
 }
 
