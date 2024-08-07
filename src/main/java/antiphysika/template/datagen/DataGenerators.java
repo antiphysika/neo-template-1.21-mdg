@@ -62,7 +62,7 @@ public class DataGenerators
                                         ExistingFileHelper exFileHelper)
   {
     event.getGenerator().addProvider(
-      true,
+      event.includeClient(),
       new ModTranslations(output, "en_us")
     );
   }
