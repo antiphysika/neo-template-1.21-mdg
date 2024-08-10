@@ -93,6 +93,15 @@ neoForge {
       sourceSet(sourceSets.main)
     }
   }
+
+  unitTest {
+    enable()
+    testedMod = mods.getAt(0)
+  }
+}
+
+test {
+  useJUnitPlatform()
 }
 
 sourceSets.main.resources {
@@ -104,6 +113,10 @@ configurations {
 }
 
 dependencies {
+  // JUnit
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
   System.out.println(String.format("jei_enabled == %s", jei_enabled));
   System.out.println(String.format("jade_enabled == %s", jade_enabled));
   System.out.println(String.format("dag_enabled == %s", dag_enabled));
