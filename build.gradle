@@ -111,9 +111,10 @@ dependencies {
 
   // JEI
   if (jei_enabled == "true") {
-    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
     runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    // To compile against the JEI api (e.g. for a JEI plugin), uncomment:
+    //compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    //compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
   }
 
   // Jade
