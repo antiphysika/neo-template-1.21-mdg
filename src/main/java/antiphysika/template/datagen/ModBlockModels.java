@@ -27,6 +27,7 @@ public class ModBlockModels extends BlockStateProvider
   {
     simpleBlockWithItem(block.get(), cubeAll(block.get()));
   }
+
   @Override
   protected void registerStatesAndModels()
   {
