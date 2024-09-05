@@ -120,6 +120,7 @@ dependencies {
   System.out.println(String.format("jei_enabled == %s", jei_enabled));
   System.out.println(String.format("jade_enabled == %s", jade_enabled));
   System.out.println(String.format("xaeros_minimap_enabled == %s", xaeros_minimap_enabled));
+  System.out.println(String.format("xaeros_worldmap_enabled == %s", xaeros_worldmap_enabled));
 
   // JEI
   if (jei_enabled == "true") {
@@ -137,6 +138,11 @@ dependencies {
   // Xaero's Minimap
   if (xaeros_minimap_enabled == "true") {
     implementation "curse.maven:xaeros-minimap-263420:${xaeros_minimap_file_id}"
+  }
+
+  // Xaero's World Map
+  if (xaeros_worldmap_enabled == "true") {
+    implementation "curse.maven:xaeros-minimap-317780:${xaeros_worldmap_file_id}"
   }
 }
 
