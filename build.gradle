@@ -38,14 +38,16 @@ repositories {
 }
 
 dependencies {
-  // JUnit
-  testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
-  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
+  System.out.println(String.format("junit_enabled == %s", junit_enabled));
   System.out.println(String.format("jei_enabled == %s", jei_enabled));
   System.out.println(String.format("jade_enabled == %s", jade_enabled));
   System.out.println(String.format("xaeros_minimap_enabled == %s", xaeros_minimap_enabled));
   System.out.println(String.format("xaeros_worldmap_enabled == %s", xaeros_worldmap_enabled));
+
+  // JUnit
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 
   // JEI
   if (jei_enabled == "true") {
@@ -128,14 +130,18 @@ neoForge {
     }
   }
 
-  unitTest {
-    enable()
-    testedMod = mods.getAt(0)
+  if (junit_enabled == "true") {
+    unitTest {
+      enable()
+      testedMod = mods.getAt(0)
+    }
   }
 }
 
-test {
-  useJUnitPlatform()
+if (junit_enabled == "true") {
+  test {
+    useJUnitPlatform()
+  }
 }
 
 sourceSets.main.resources {
