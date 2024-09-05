@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Script filename
+SCRIPT_NAME="${0##*/}"
+
+## {{{ error()
+function error()
+{
+  echo >&2 "$SCRIPT_NAME: error:" "$@"
+}
+## }}}
+
+## {{{ die()
+function die()
+{
+  error "$@"
+  exit 1
+}
+## }}}
+
+# git tag -s -m "Tag release v0.1.6" v0.1.6
+
+if [[ $# -ne 1 || -z $1 ]]
+then
+  echo "Usage: $SCRIPT_NAME <version>"
+  exit 1
+fi
+
+version="$1"
+version_str="v$version"
+git tag -s -m "Tag release $version_str" "$version_str"
+
+#
+# vim: ts=2 sw=2 et fdm=marker :

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+total=0
+find src -type f -iname '*.java' |while read path
+do
+  n=$(grep -ci 'JAVADOC-PLACEHOLDER' "$path")
+  [[ $n -gt 0 ]] || continue
+
+  ((total++))
+  [[ $total -eq 1 ]] && echo -e "Count\tSource file"
+
+  n_pad=$(printf %02d $n)
+  [[ ${n_pad:0:1} == 0 ]] && n_pad="$n"
+
+  echo -e "$n_pad\t$path"
+done
+
+#
+# vim: ts=2 sw=2 et fdm=marker :

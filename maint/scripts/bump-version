@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Script filename
+SCRIPT_NAME="${0##*/}"
+
+## {{{ error()
+function error()
+{
+  echo >&2 "$SCRIPT_NAME: error:" "$@"
+}
+## }}}
+
+## {{{ die()
+function die()
+{
+  error "$@"
+  exit 1
+}
+## }}}
+
+gradle_props="$(pwd)/gradle.properties"
+[[ -f $gradle_props ]] || \
+  die "gradle.properties file doesn't exist in working directory"
+
+if ! grep -q '^mod_version=.*' "$gradle_props"
+then
+  die "Unable to locate 'mod_version=...' line in $gradle_props"
+fi
+
+ver_line="$(grep '^mod_version=' "$gradle_props")"
+ver_str="$(echo "$ver_line" |sed 's/^.*=//')"
+
+set -- $(echo "$ver_str" |tr -d '[:blank:]' |tr '.' ' ')
+patch_ver="$3"
+((patch_ver++))
+
+cur_ver="$ver_str"
+new_ver="$1.$2.$patch_ver"
+
+echo "Current version: $cur_ver"
+echo "New version: $new_ver"
+
+tmp_gradle_props="$gradle_props.tmp.verbump"
+cp -a "$gradle_props" "$tmp_gradle_props" \
+  || die "cp(1) of $gradle_props to $tmp_gradle_props failed"
+
+sed \
+  "s/^mod_version=.*/mod_version=$new_ver/" \
+  < "$tmp_gradle_props" > "$gradle_props" \
+  || die "sed(1) failed"
+
+rm -f "$tmp_gradle_props"
+
+git commit -m "[Auto] Version bump: $new_ver" "$gradle_props" \
+  || die "git(1) commit failed"
+
+#
+# vim: ts=2 sw=2 et fdm=marker :
