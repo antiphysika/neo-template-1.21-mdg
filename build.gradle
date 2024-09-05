@@ -119,7 +119,6 @@ dependencies {
 
   System.out.println(String.format("jei_enabled == %s", jei_enabled));
   System.out.println(String.format("jade_enabled == %s", jade_enabled));
-  System.out.println(String.format("dynassetgen_enabled == %s", dynassetgen_enabled));
   System.out.println(String.format("xaeros_minimap_enabled == %s", xaeros_minimap_enabled));
 
   // JEI
@@ -133,15 +132,6 @@ dependencies {
   // Jade
   if (jade_enabled == "true") {
     implementation "curse.maven:jade-324717:${jade_file_id}"
-  }
-
-  // Dynamic Asset Generator
-  if (dynassetgen_enabled == "true") {
-    implementation("dev.lukebemish:dynamicassetgenerator:${dynassetgen_version}") {
-      capabilities {
-        requireCapability('dev.lukebemish:dynamicassetgenerator-neoforge')
-      }
-    }
   }
 
   // Xaero's Minimap
