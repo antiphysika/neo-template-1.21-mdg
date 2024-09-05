@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Script filename
+SCRIPT_NAME="${0##*/}"
+
+## {{{ error()
+function error()
+{
+  echo >&2 "$SCRIPT_NAME: error:" "$@"
+}
+## }}}
+
+## {{{ die()
+function die()
+{
+  error "$@"
+  exit 1
+}
+## }}}
+
+if [[ $# -lt 1 ]]
+then
+  echo "Usage: $SCRIPT_NAME <task...>"
+  echo
+  echo "Shortcuts:"
+  echo
+  echo "  client  Tasks: [build, runData, runClient]"
+  echo "  data    Tasks: [build, runData]"
+  exit 1
+fi
+
+[[ -f gradlew ]] || die "Gradle wrapper 'gradlew' not found"
+[[ -x gradlew ]] || die "Gradle wrapper 'gradlew' not executable"
+
+function run()
+{
+  local task="$1"
+  ./gradlew "$task" \
+    || die "Gradle exited with non-ero status $?"
+}
+
+case "$1" in
+  client)
+    tasks=(build runData runClient)
+    ;;
+  data)
+    tasks=(build runData)
+    ;;
+  *)
+    tasks=("$@")
+    ;;
+esac
+
+for task in "${tasks[@]}"
+do
+  run "$task"
+done
+
+#
+# vim: ts=2 sw=2 et fdm=marker :
